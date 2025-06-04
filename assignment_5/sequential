@@ -1,0 +1,20 @@
+module sequential_mux_register (
+    input  logic clk,
+    input  logic s,
+    input  logic a,
+    input  logic c,
+    output logic y
+);
+    logic d;
+
+    always_comb begin
+        if (s == 1'b0)
+            d = a;
+        else
+            d = c;
+    end
+
+    always_ff @(posedge clk) begin
+        y <= d;
+    end
+endmodule
