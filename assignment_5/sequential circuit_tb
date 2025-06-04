@@ -1,0 +1,29 @@
+module testbench;
+
+    // Declare your signals here, for example:
+    reg clk;
+    reg reset;
+
+    // Instantiate your design under test (DUT) here
+    // my_module dut (.clk(clk), .reset(reset), ...);
+
+    initial begin
+        // Initialize signals
+        clk = 0;
+        reset = 1;
+
+        // Dump waves to dump.vcd file
+        $dumpfile("dump.vcd");
+        $dumpvars(0, testbench);
+
+        // Release reset after some time
+        #10 reset = 0;
+
+        // Run simulation for 50 time units
+        #50 $finish;
+    end
+
+    // Clock generation (if needed)
+    always #5 clk = ~clk;
+
+endmodule
